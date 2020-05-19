@@ -11,5 +11,5 @@ public class RegistrationByCardInfo
     private final String phoneNumber;
     private final LocalDate date;
     private final String city;
-
+    private final LocalDate newDate;
 }

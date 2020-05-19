@@ -33,18 +33,16 @@ public class CardDeliveryTest {
             form.$("[data-test-id=phone] input").setValue(registration.getPhoneNumber());
             form.$("[data-test-id=agreement]").click();
 
-            $$("button").find(exactText("Забронировать")).click();
+            $$("button").find(exactText("Запланировать")).click();
+            $(withText("Успешно!")).waitUntil(visible, 15000);
+
+            form.$("[data-test-id=date] input").setValue(registration.getNewDate().toString());
+
+            $$("button").find(exactText("Запланировать")).click();
+            $(withText("Необходимо подтверждение")).waitUntil(visible, 15000);
+
+            $$("button").find(exactText("Перепланировать")).click();
             $(withText("Успешно!")).waitUntil(visible, 15000);
         }
-    }
-
-    private String getDeliveryDate(Date date){
-        Date currentDate = new Date();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(currentDate);
-        calendar.add(Calendar.DATE, 3);
-        String pattern = "dd.MM.yyyy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        return simpleDateFormat.format(calendar.getTime());
     }
 }
